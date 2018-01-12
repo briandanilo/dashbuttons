@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "scan": "dash-button scan"
+  },
+  "dependencies": {
+    "dash-button": "^3.2.0",
+    "node-dash-button": "^0.6.1"
+  }
+}

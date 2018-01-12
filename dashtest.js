@@ -1,5 +1,6 @@
 var dash_button = require('node-dash-button');
 var dash = dash_button("fc:65:de:9a:a4:b7", null, 1000);
+var dash2 = dash_button("78:e1:03:ac:f9:18", null, 1000);
 let huejay = require('huejay');
 
 let client = new huejay.Client({
@@ -22,8 +23,8 @@ function createHueClient(){
     });
 }
 
-function flipLights(){
-  client.lights.getById(3)
+function flipLights(activeLight){
+  client.lights.getById(activeLight)
   .then(light => {
     if (!light.on)
       light.on = true
@@ -61,7 +62,14 @@ createHueClient();
 dash.on("detected", function (){
   var d = new Date()
   console.log("pushed at: ",d.toTimeString());
-  flipLights();
+  flipLights(3);
+});
+
+dash2.on("detected", function (){
+  console.log("hit second dash button!")
+  var d = new Date()
+  console.log("pushed at: ",d.toTimeString());
+  flipLights(2);
 });
 
 
